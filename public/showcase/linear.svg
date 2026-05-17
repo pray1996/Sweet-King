@@ -1,0 +1,15 @@
+<svg width="500" height="300" viewBox="0 0 500 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="500" height="300" rx="18" fill="#0f1014"/>
+  <rect x="1" y="1" width="498" height="298" rx="17" stroke="white" stroke-opacity=".08"/>
+  <circle cx="395" cy="58" r="86" fill="#6E56CF" opacity=".22" filter="url(#blur)"/>
+  <circle cx="114" cy="244" r="112" fill="#22D3EE" opacity=".12" filter="url(#blur)"/>
+  <rect x="34" y="32" width="432" height="236" rx="14" fill="#151720" stroke="white" stroke-opacity=".08"/>
+  <rect x="58" y="58" width="118" height="12" rx="6" fill="white" opacity=".9"/>
+  <rect x="58" y="86" width="205" height="9" rx="4.5" fill="white" opacity=".34"/>
+  <rect x="58" y="104" width="164" height="9" rx="4.5" fill="white" opacity=".2"/>
+  <rect x="58" y="148" width="148" height="72" rx="12" fill="white" opacity=".06"/>
+  <rect x="224" y="148" width="218" height="72" rx="12" fill="white" opacity=".08"/>
+  <rect x="246" y="172" width="142" height="10" rx="5" fill="white" opacity=".52"/>
+  <rect x="246" y="194" width="86" height="8" rx="4" fill="white" opacity=".22"/>
+  <defs><filter id="blur" x="-80" y="-80" width="660" height="460" filterUnits="userSpaceOnUse"><feGaussianBlur stdDeviation="45"/></filter></defs>
+</svg>
