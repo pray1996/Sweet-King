@@ -1,6 +1,7 @@
 import { Hero } from "@/sections/hero";
 import { Showcase } from "@/sections/showcase";
 import { Testimonials } from "@/sections/testimonials";
+import { VideoTestimonials } from "@/sections/video-testimonials";
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
       <Hero />
       <Showcase />
       <Testimonials />
+      <VideoTestimonials />
     </main>
   );
 }
