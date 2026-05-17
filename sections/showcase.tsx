@@ -45,13 +45,13 @@ export function Showcase() {
       </h3>
 
       <div className="relative flex flex-col">
-        <Marquee className="max-w-screen [--duration:60s] [--gap:0.875rem]">
+        <Marquee className="max-w-screen [--duration:30s]">
           {showcases.map((showcase) => (
             <ShowcaseCard key={showcase.title} {...showcase} />
           ))}
         </Marquee>
-        <div className="pointer-events-none absolute inset-y-0 left-0 h-full w-24 bg-linear-to-r from-background via-background/90 to-transparent md:w-36 lg:w-44" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 h-full w-24 bg-linear-to-l from-background via-background/90 to-transparent md:w-36 lg:w-44" />
+        <div className="pointer-events-none absolute inset-y-0 left-0 h-full w-1/12 bg-linear-to-r from-background" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 h-full w-1/12 bg-linear-to-l from-background" />
       </div>
     </section>
   );
