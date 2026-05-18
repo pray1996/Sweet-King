@@ -1,39 +1,105 @@
-import Link from "next/link";
-import { ChevronRight } from "lucide-react";
+import { ArrowUpRight, ExternalLink, FileText, Github } from "lucide-react";
 
 export interface ShowcaseCardProps {
   title: string;
   image: string;
   href: string;
-  affiliation: string;
+  description: string;
+  tags: string[];
+  demoUrl?: string;
+  githubUrl?: string;
+  paperUrl?: string;
 }
 
 export function ShowcaseCard({
   title,
   image,
-  href,
-  affiliation,
+  description,
+  tags,
+  demoUrl,
+  githubUrl,
+  paperUrl,
 }: ShowcaseCardProps) {
-  return (
-    <Link
-      href={href}
-      className="group relative flex w-[500px] max-w-[calc(100vw-2rem)] cursor-pointer flex-col gap-2 overflow-hidden"
-    >
-      <img
-        src={image}
-        alt={title}
-        width={500}
-        height={300}
-        className="h-[300px] max-h-[300px] w-full rounded-xl border border-border/70 object-cover shadow-xs"
-      />
+  const primaryUrl = demoUrl ?? paperUrl ?? githubUrl ?? "#";
 
-      <div className="flex flex-col">
-        <div className="group inline-flex cursor-pointer items-center justify-start gap-1 text-xl font-semibold text-neutral-700 duration-200 hover:text-neutral-700 dark:text-neutral-300 dark:hover:text-neutral-200">
-          {title}
-          <ChevronRight className="size-4 translate-x-0 opacity-0 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:opacity-100" />
+  return (
+    <article
+      className="group/card relative flex w-[420px] max-w-[calc(100vw-2rem)] cursor-pointer flex-col overflow-hidden rounded-lg border border-border/70 bg-card shadow-lg transition-[transform,box-shadow,border-color] duration-300 ease-out hover:scale-[1.02] hover:border-border hover:shadow-xl md:w-[460px]"
+    >
+      <div className="transition duration-300 ease-out group-hover/card:blur-[2px] group-focus-within/card:blur-[2px]">
+        <img
+          src={image}
+          alt={title}
+          width={1280}
+          height={720}
+          className="aspect-video w-full object-cover"
+        />
+
+        <div className="flex min-h-[220px] flex-col gap-4 p-5">
+          <div className="flex flex-col gap-2">
+            <h3 className="text-xl font-semibold tracking-tight text-foreground">
+              {title}
+            </h3>
+            <p className="text-sm leading-6 text-muted-foreground">
+              {description}
+            </p>
+          </div>
+
+          <div className="flex flex-wrap gap-2">
+            {tags.map((tag) => (
+              <span
+                key={tag}
+                className="rounded-full border border-border bg-background/70 px-2.5 py-1 text-xs font-medium text-muted-foreground"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          <div className="mt-auto flex flex-wrap gap-2">
+            {demoUrl ? (
+              <a
+                href={demoUrl}
+                className="inline-flex h-8 items-center gap-1.5 rounded-md border border-border bg-background px-3 text-xs font-medium text-foreground shadow-xs transition-colors duration-200 ease-out hover:bg-accent"
+              >
+                Demo
+                <ExternalLink className="size-3.5" />
+              </a>
+            ) : null}
+            {githubUrl ? (
+              <a
+                href={githubUrl}
+                className="inline-flex h-8 items-center gap-1.5 rounded-md border border-border bg-background px-3 text-xs font-medium text-foreground shadow-xs transition-colors duration-200 ease-out hover:bg-accent"
+              >
+                GitHub
+                <Github className="size-3.5" />
+              </a>
+            ) : null}
+            {paperUrl ? (
+              <a
+                href={paperUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex h-8 items-center gap-1.5 rounded-md border border-border bg-background px-3 text-xs font-medium text-foreground shadow-xs transition-colors duration-200 ease-out hover:bg-accent"
+              >
+                Paper
+                <FileText className="size-3.5" />
+              </a>
+            ) : null}
+          </div>
         </div>
-        <p className="text-sm text-neutral-400">{affiliation}</p>
       </div>
-    </Link>
+
+      <a
+        href={primaryUrl}
+        className="pointer-events-none absolute inset-0 hidden items-center justify-center bg-white/35 opacity-0 transition-opacity duration-200 ease-out group-hover/card:pointer-events-auto group-hover/card:opacity-100 group-focus-within/card:pointer-events-auto group-focus-within/card:opacity-100 md:flex dark:bg-black/15"
+        aria-label={`View ${title}`}
+      >
+        <span className="inline-flex scale-[0.98] items-center gap-1.5 rounded-full bg-black px-3 py-1.5 text-xs font-medium text-white shadow-sm transition-transform duration-200 ease-out group-hover/card:scale-100 group-focus-within/card:scale-100 dark:bg-white dark:text-black">
+          View Project
+          <ArrowUpRight className="size-3.5" />
+        </span>
+      </a>
+    </article>
   );
 }
