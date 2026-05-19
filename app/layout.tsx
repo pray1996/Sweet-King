@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Magic UI Replica",
+  title: "Sweet King",
   description: "A pixel-focused Magic UI homepage reconstruction baseline.",
 };
 
