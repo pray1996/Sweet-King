@@ -27,7 +27,7 @@ const showcases = [
 
 export function Showcase() {
   return (
-    <section id="showcase" className="container py-10 md:py-14">
+    <section id="projects" className="container py-10 md:py-14">
       <h2 className="mb-2 text-center text-3xl font-semibold leading-[1.2] tracking-tighter text-balance text-foreground md:text-4xl lg:text-5xl">
         Projects
       </h2>

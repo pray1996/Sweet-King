@@ -17,7 +17,7 @@ export function HeroActions() {
         <span className="relative z-10">View Projects</span>
         <ChevronRight className="relative z-10 ml-1 size-4 shrink-0 transition-all duration-300 ease-out group-hover:translate-x-1" />
       </Link>
-      <Link
+      <a
         href="#experience"
         className={buttonVariants({
           variant: "rainbow",
@@ -27,7 +27,7 @@ export function HeroActions() {
       >
         <span className="relative z-10">View Experience</span>
         <ChevronRight className="relative z-10 ml-1 size-4 shrink-0 transition-all duration-300 ease-out group-hover:translate-x-1" />
-      </Link>
+      </a>
       <Link
         href="#about"
         className={buttonVariants({

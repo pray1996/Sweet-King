@@ -1,93 +1,109 @@
-import { ArrowUpRight, Heart, MessageCircle, Repeat2 } from "lucide-react";
+"use client";
+
+import { motion } from "framer-motion";
+import {
+  ArrowUpRight,
+  Beaker,
+  BookOpen,
+  Briefcase,
+  CalendarDays,
+  Layers,
+  Pencil,
+  Sparkles,
+  Workflow,
+} from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
-export interface TweetCardProps {
-  name: string;
-  handle: string;
+export interface ExperienceCardProps {
+  title: string;
+  meta: string;
   avatar: string;
-  text: string;
-  date: string;
-  metrics: {
-    replies: string;
-    reposts: string;
-    likes: string;
-  };
+  description: string;
+  period: string;
+  tags: string[];
   className?: string;
 }
 
-export function TweetCard({
-  name,
-  handle,
+const tagIcons = [Briefcase, Layers, ArrowUpRight];
+
+const iconByTag: Record<string, typeof Briefcase> = {
+  AI: Sparkles,
+  Catalysis: Beaker,
+  Documentation: BookOpen,
+  Literature: ArrowUpRight,
+  Markdown: Layers,
+  Notes: ArrowUpRight,
+  Papers: BookOpen,
+  Research: ArrowUpRight,
+  Systems: Layers,
+  Workflow: Workflow,
+  Writing: Pencil,
+};
+
+export function ExperienceCard({
+  title,
+  meta,
   avatar,
-  text,
-  date,
-  metrics,
+  description,
+  period,
+  tags,
   className,
-}: TweetCardProps) {
+}: ExperienceCardProps) {
   return (
-    <article
+    <motion.article
+      variants={{
+        hidden: { opacity: 0, y: 14 },
+        visible: {
+          opacity: 1,
+          y: 0,
+          transition: { duration: 0.38, ease: [0.25, 0.1, 0.25, 1] },
+        },
+      }}
       className={cn(
-        "group relative mb-4 break-inside-avoid overflow-hidden rounded-xl border border-border bg-card p-4 shadow-xs transition-[border-color,background-color] duration-200 ease-in-out",
+        "group relative grid gap-5 overflow-hidden rounded-[2rem] border border-border/80 bg-card px-5 py-5 shadow-xs transition-[border-color,box-shadow,transform,background-color] duration-300 ease-out hover:z-10 hover:-translate-y-0.5 hover:border-border hover:bg-background hover:shadow-md md:grid-cols-[4.5rem_minmax(0,1fr)_12rem] md:px-7 md:py-6",
         className,
       )}
     >
-      <div className="transition duration-200 ease-out group-hover:blur-[2px] group-focus-within:blur-[2px]">
-        <div className="flex items-start gap-3">
-          <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-muted text-sm font-semibold text-foreground">
-            {avatar}
-          </div>
-          <div className="min-w-0 flex-1">
-            <div className="flex items-center gap-1.5">
-              <p className="truncate text-sm font-semibold leading-5 text-foreground">
-                {name}
-              </p>
-              <svg
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-                className="size-4 shrink-0 fill-[#1d9bf0]"
-              >
-                <path d="M22.25 12c0 5.66-4.59 10.25-10.25 10.25S1.75 17.66 1.75 12 6.34 1.75 12 1.75 22.25 6.34 22.25 12Zm-11.43 4.64 7.61-7.61-1.42-1.42-6.19 6.19-2.83-2.83-1.42 1.42 4.25 4.25Z" />
-              </svg>
-            </div>
-            <p className="text-sm leading-5 text-muted-foreground">{handle}</p>
-          </div>
+      <div className="flex items-start justify-between gap-4 md:contents">
+        <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-muted text-base font-semibold text-foreground shadow-[inset_0_1px_0_oklch(100%_0_0_/_0.65)] md:size-14 md:text-lg">
+          {avatar}
         </div>
 
-        <p className="mt-3 text-[15px] leading-6 tracking-[-0.005em] text-foreground/90">
-          {text}
-        </p>
-
-        <div className="mt-3 flex items-center gap-1 text-sm text-muted-foreground">
-          <span>{date}</span>
-        </div>
-
-        <div className="mt-3 flex items-center gap-5 border-t border-border/70 pt-3 text-muted-foreground">
-          <span className="inline-flex items-center gap-1.5 text-xs">
-            <MessageCircle className="size-3.5" />
-            {metrics.replies}
-          </span>
-          <span className="inline-flex items-center gap-1.5 text-xs">
-            <Repeat2 className="size-3.5" />
-            {metrics.reposts}
-          </span>
-          <span className="inline-flex items-center gap-1.5 text-xs">
-            <Heart className="size-3.5" />
-            {metrics.likes}
-          </span>
+        <div className="flex items-center gap-2 pt-1 text-sm font-medium text-foreground md:col-start-3 md:row-start-1 md:justify-end md:pt-2">
+          <CalendarDays className="size-4 text-muted-foreground" />
+          <span>{period}</span>
         </div>
       </div>
 
-      <a
-        href="#"
-        className="pointer-events-none absolute inset-0 hidden items-center justify-center bg-white/35 opacity-0 transition-opacity duration-200 ease-out group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100 md:flex dark:bg-black/15"
-        aria-label={`View tweet by ${name}`}
-      >
-        <span className="inline-flex scale-[0.98] items-center gap-1.5 rounded-full bg-black px-3 py-1.5 text-xs font-medium text-white shadow-sm transition-transform duration-200 ease-out group-hover:scale-100 group-focus-within:scale-100 dark:bg-white dark:text-black">
-          View Tweet
-          <ArrowUpRight className="size-3.5" />
-        </span>
-      </a>
-    </article>
+      <div className="min-w-0 md:col-start-2 md:row-start-1">
+        <div className="flex flex-col gap-1">
+          <h3 className="text-base font-semibold leading-5 tracking-tight text-foreground md:text-lg">
+            {title}
+          </h3>
+          <p className="text-sm leading-5 text-muted-foreground">{meta}</p>
+        </div>
+
+        <p className="mt-2 max-w-3xl text-[15px] leading-6 tracking-[-0.005em] text-foreground/90">
+          {description}
+        </p>
+
+        <div className="mt-4 flex flex-wrap gap-2.5">
+          {tags.map((tag, index) => {
+            const Icon = iconByTag[tag] ?? tagIcons[index % tagIcons.length];
+
+            return (
+              <span
+                key={tag}
+                className="inline-flex h-7 items-center gap-1.5 rounded-full bg-muted px-2.5 text-xs font-medium text-foreground/85 shadow-[inset_0_1px_0_oklch(100%_0_0_/_0.62)] transition-colors duration-200 ease-out group-hover:bg-muted/80"
+              >
+                <Icon className="size-3.5 text-muted-foreground" />
+                {tag}
+              </span>
+            );
+          })}
+        </div>
+      </div>
+    </motion.article>
   );
 }
