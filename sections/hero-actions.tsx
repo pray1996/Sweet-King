@@ -37,7 +37,7 @@ export function HeroActions() {
             "w-full gap-2 opacity-90 sm:w-[11.5rem] md:w-auto [&:before]:opacity-70 hover:opacity-100",
         })}
       >
-        <span className="relative z-10">About Me</span>
+        <span className="relative z-10">View Inspirations</span>
         <ChevronRight className="relative z-10 ml-1 size-4 shrink-0 transition-all duration-300 ease-out group-hover:translate-x-1" />
       </Link>
     </div>

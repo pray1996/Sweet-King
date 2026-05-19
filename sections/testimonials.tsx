@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 
 import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import {
   ExperienceCard,
   type ExperienceCardProps,
@@ -152,14 +154,13 @@ export function Testimonials() {
       <button
         type="button"
         onClick={() => setExpanded((value) => !value)}
-        className={buttonVariants({
-          variant: "outline",
-          size: "sm",
-          className:
-            "mx-auto mt-7 flex h-12 rounded-[1.125rem] border-border/70 bg-background px-7 text-lg font-medium tracking-[-0.02em] shadow-sm transition-[background-color,box-shadow,border-color] duration-300 ease-out hover:border-border hover:bg-background hover:shadow-md",
-        })}
+        className={cn(
+          buttonVariants({ variant: "outline", size: "sm" }),
+          "mx-auto mt-7 flex h-10 gap-2 rounded-full px-5 text-sm font-medium shadow-xs transition-[border-color,box-shadow,transform] duration-300 ease-out hover:-translate-y-0.5 hover:shadow-md",
+        )}
       >
         {expanded ? "Show Less" : "Show More"}
+        <ArrowUpRight className="size-4" />
       </button>
     </section>
   );
