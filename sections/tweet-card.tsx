@@ -22,6 +22,9 @@ export interface ExperienceCardProps {
   description: string;
   period: string;
   tags: string[];
+  active?: boolean;
+  dimmed?: boolean;
+  onMouseEnter?: () => void;
   className?: string;
 }
 
@@ -48,6 +51,9 @@ export function ExperienceCard({
   description,
   period,
   tags,
+  active = false,
+  dimmed = false,
+  onMouseEnter,
   className,
 }: ExperienceCardProps) {
   return (
@@ -60,8 +66,11 @@ export function ExperienceCard({
           transition: { duration: 0.38, ease: [0.25, 0.1, 0.25, 1] },
         },
       }}
+      onMouseEnter={onMouseEnter}
       className={cn(
-        "group relative grid gap-5 overflow-hidden rounded-[2rem] border border-border/80 bg-card px-5 py-5 shadow-xs transition-[border-color,box-shadow,transform,background-color] duration-300 ease-out hover:z-10 hover:-translate-y-0.5 hover:border-border hover:bg-background hover:shadow-md md:grid-cols-[4.5rem_minmax(0,1fr)_12rem] md:px-7 md:py-6",
+        "group relative grid gap-5 overflow-hidden rounded-[2rem] border border-border/80 bg-card px-5 py-5 shadow-xs transition-[border-color,box-shadow,transform,background-color,filter,opacity] duration-300 ease-out hover:z-10 hover:-translate-y-0.5 hover:border-border hover:bg-background hover:shadow-md md:grid-cols-[4.5rem_minmax(0,1fr)_12rem] md:px-7 md:py-6",
+        active && "z-10 border-border bg-background opacity-100 blur-0 shadow-md",
+        dimmed && "md:opacity-45 md:blur-[2px]",
         className,
       )}
     >

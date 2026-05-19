@@ -95,6 +95,7 @@ const experiences: ExperienceCardProps[] = [
 
 export function Testimonials() {
   const [expanded, setExpanded] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
     <section id="experience" className="container mx-auto py-12 md:py-16">
@@ -110,6 +111,7 @@ export function Testimonials() {
       >
         <motion.div
           className="flex flex-col gap-5"
+          onMouseLeave={() => setHoveredIndex(null)}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
@@ -122,10 +124,13 @@ export function Testimonials() {
             },
           }}
         >
-          {experiences.map((experience) => (
+          {experiences.map((experience, index) => (
             <ExperienceCard
               key={`${experience.title}-${experience.period}`}
               {...experience}
+              active={hoveredIndex === index}
+              dimmed={hoveredIndex !== null && hoveredIndex !== index}
+              onMouseEnter={() => setHoveredIndex(index)}
             />
           ))}
         </motion.div>
